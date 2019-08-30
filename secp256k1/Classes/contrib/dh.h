@@ -1,5 +1,5 @@
-#ifndef SECP256K1_ECDH_H
-#define SECP256K1_ECDH_H
+#ifndef SECP256K1_ECDH2_H
+#define SECP256K1_ECDH2_H
 
 #include "secp256k1.h"
 
@@ -28,4 +28,4 @@ SECP256K1_API SECP256K1_WARN_UNUSED_RESULT int secp256k1_ecdh_raw(
 }
 #endif
 
-#endif /* SECP256K1_ECDH_H */
+#endif /* SECP256K1_ECDH2_H */
