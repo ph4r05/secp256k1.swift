@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'secp256k1.swift'
-  s.version          = '0.1.4'
+  s.version          = '0.1.6'
   s.summary          = 'secp256k1 bindings for swift. Cocoapods, Carthage and SPM support. Linux support.'
 
 # This description is used to generate tags and improve search results.
@@ -35,23 +35,28 @@ Bitcoin, Ethereum and many other Cryptocurrency Signature generation and verific
   s.watchos.deployment_target = '2.0'
 
   s.module_name = 'secp256k1'
+  s.prepare_command = 'echo $(pwd); bash prepare.sh'
 
   s.pod_target_xcconfig = {
     'SWIFT_INCLUDE_PATHS' => '${PODS_ROOT}',
     'OTHER_CFLAGS' => '-DHAVE_CONFIG_H=1 -pedantic -Wall -Wextra -Wcast-align -Wnested-externs -Wshadow -Wstrict-prototypes -Wno-shorten-64-to-32 -Wno-conditional-uninitialized -Wno-unused-function -Wno-long-long -Wno-overlength-strings -O3',
     'HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/secp256k1/Classes"'
   }
-
-  s.source_files = 'secp256k1/Classes/secp256k1/{src,include,contrib}/*.{h,c}', 'secp256k1/Classes/secp256k1/src/modules/{recovery,ecdh}/*.{h,c}', 'secp256k1/Classes/secp256k1-config.h', 'secp256k1/Classes/secp256k1_main.h', 'secp256k1/Classes/secp256k1_ec_mult_static_context.h',
-      'secp256k1/Classes/secp256k1/src/modules/{recovery,ecdh}/*.h'
+  
+  s.source_files = 'secp256k1/Classes/secp256k1/{src,contrib}/*.{h,c}',  'secp256k1/Classes/secp256k1_main.h', 'secp256k1/Classes/ecmult_static_context.h', 'secp256k1/Classes/libsecp256k1-config.h',
   s.public_header_files = 'secp256k1/Classes/secp256k1/include/*.h'
   s.private_header_files = 'secp256k1/Classes/secp256k1_ec_mult_static_context.h', 'secp256k1/Classes/secp256k1/*.h', 'secp256k1/Classes/secp256k1/{contrib,src}/*.h'
   s.exclude_files = 'secp256k1/Classes/secp256k1/src/test*.{c,h}', 'secp256k1/Classes/secp256k1/src/gen_context.c', 'secp256k1/Classes/secp256k1/src/*bench*.{c,h}', 'secp256k1/Classes/secp256k1/src/modules/{recovery,ecdh}/*test*.{c,h}'
+  s.header_mappings_dir = 'secp256k1/Classes/secp256k1/include'
 
   # s.resource_bundles = {
   #   'secp256k1' => ['secp256k1/Assets/*.png']
   # }
+  
+  #s.subspec 'include' do |ss|
+  #  ss.source_files = 'secp256k1/Classes/secp256k1/include/*.h'
+  #  ss.header_mappings_dir = 'secp256k1/Classes/secp256k1/include'
+  #  ss.xcconfig = { 'ALWAYS_SEARCH_USER_PATHS' => 'NO' }
+  #end
 
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
